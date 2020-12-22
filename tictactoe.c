@@ -28,7 +28,7 @@ int main()
     scanf("%s", s1);
     
     //n -> No. of games, w1 -> No. of games won by player 1, w2 -> No. of games won by player 2
-    int n, w1, w2;
+    int n, w1 = 0, w2 = 0;
     printf("Number of games: ");
     scanf("%d", &n);
     if (n<1)
