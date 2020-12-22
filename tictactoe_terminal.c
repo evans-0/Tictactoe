@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
     
     //n -> No. of games, w1 -> No. of games won by player 1, w2 -> No. of games won by player 2
     int n = ((int) argv[argc - 1][0] - 48) % 10;
-    int w1, w2;
+    int w1 = 0, w2 = 0;
     if (n<1)
     {
         printf("Please enter valid no. of games.\n");
