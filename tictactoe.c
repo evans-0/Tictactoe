@@ -51,6 +51,7 @@ int main()
     }
 
     printf("\nScores:\n%s -> %d\n%s -> %d\n", n1, w1, n2, w2);
+    printf("Thank you for playing!\n");
     free(n1);
     free(n2);
     free(s1);
@@ -220,7 +221,7 @@ int play(char name1[20], char name2[20], char sym1)
     }
     if ((isWin(l)==0) && (isFinished(l)))
     {
-        printf("\nGame tied!\nThank you for playing!\n");
+        printf("\nGame tied!\n");
         return 0;
     }
     return 0;
