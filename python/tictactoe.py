@@ -84,6 +84,57 @@ def isWin():
 
     return False
             
+def play(size):
+    create(size)
+    i = 0
+    while not isWin() and not isFinished():
+        if i%2==0:
+            print(f"\n{p1}({ch}) playing...\n")
+        else:
+            print(f"\n{p2}({ch_}) playing...\n")
+        view()
+        try:
+            row = int(input("\nWhich row do you want to mark? "))
+            col = int(input("Which column do you want to mark? "))
+            print()
+            if i%2==0:
+                if (row>size or col >size or row<1 or col<1):
+                    print(row, col)
+                    sys.stderr.write("Enter a valid row or column\n")
+                else:
+                    if not isMarked(row-1,col-1):
+                        mark(row-1, col-1, ch)
+                        i+=1
+                        if isWin():
+                            view()
+                            print(f"{p1} won!!")
+                            return 1
+                    elif not isWin():
+                        sys.stderr.write('Already marked\n')
+                        sys.stdout.flush()
+            else:
+                if (row>size or col >size or row<1 or col<1):
+                    sys.stderr.write("Enter a valid row or column\n")
+                else:
+                    if not isMarked(row-1,col-1):
+                        mark(row-1, col-1, ch_)
+                        i+=1
+                        if isWin():
+                            view()
+                            print(f"{p2} won!!")
+                            return 2
+                    elif not isWin():
+                        sys.stderr.write('Already marked\n')
+                        sys.stdout.flush()
+        except:
+            pass
+    else:
+        if not isWin() and isFinished():
+            view()
+            print("\nGame tied!!")
+            return 0
+        
+
 n = int(input("Enter size of grid: "))
 for i in range(n):
         wr+=[(i,j) for j in range(n)]
@@ -93,7 +144,6 @@ for i in range(n):
 
 p1 = input('Enter player 1 name: ')
 p2 = input('Enter player 2 name: ')
-create(n)
 ch = input(f"Choose symbol for {p1} (O/X): ")
 if ch=='O' or ch=='o':
     ch_ = 'X'    #player 2 symbol
@@ -101,41 +151,18 @@ if ch=='O' or ch=='o':
 elif ch=='X' or ch=='x':
     ch_ = 'O'
     ch = 'X'
-i = 0
-while not isWin() and not isFinished():
-    if i%2==0:
-        print(f"\n{p1}({ch}) playing...\n")
-    else:
-        print(f"\n{p2}({ch_}) playing...\n")
-    view()
-    try:
-        row = int(input("\nWhich row do you want to mark? "))
-        col = int(input("Which column do you want to mark? "))
-        print()
-        if i%2==0:
-            if not isMarked(row-1,col-1):
-                mark(row-1, col-1, ch)
-                i+=1
-                if isWin():
-                    view()
-                    print(f"{p1} won!!")
-            elif not isWin():
-                sys.stderr.write('Already marked\n')
-                sys.stdout.flush()
-        else:
-            if not isMarked(row-1,col-1):
-                mark(row-1, col-1, ch_)
-                i+=1
-                if isWin():
-                    view()
-                    print(f"{p2} won!!")
-            elif not isWin():
-                sys.stderr.write('Already marked\n')
-                sys.stdout.flush()
-    except:
-        pass
-else:
-    if not isWin() and isFinished():
-        view()
-        print("\nGame tied!!")
-    print("Thank you for playing!!!")
+
+num_game = int(input("Enter number of game: "))   #No. of games
+s1 = 0   #s1 -> score of player 1
+s2 = 0   #s2 -> score of player 2
+
+for i in range(num_game):
+    print(f"\nMatch {i+1} of {num_game}")
+    res = play(n)
+    if res==1:
+        s1+=1
+    elif res==2:
+        s2+=2
+
+print(f"\nScores:\n{p1} -> {s1}\n{p2} -> {s2}")
+print("\nThank you for playing!!!")
