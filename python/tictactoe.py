@@ -99,7 +99,6 @@ def play(size):
             print()
             if i%2==0:
                 if (row>size or col >size or row<1 or col<1):
-                    print(row, col)
                     sys.stderr.write("Enter a valid row or column\n")
                 else:
                     if not isMarked(row-1,col-1):
@@ -162,7 +161,7 @@ for i in range(num_game):
     if res==1:
         s1+=1
     elif res==2:
-        s2+=2
+        s2+=1
 
 print(f"\nScores:\n{p1} -> {s1}\n{p2} -> {s2}")
 print("\nThank you for playing!!!")
