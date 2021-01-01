@@ -85,6 +85,7 @@ def isWin():
     return False
             
 def play(size):
+    '''If player 1 wins, returns 1. If player 2 wins, returns 2. If game tied, returns 0.'''
     create(size)
     i = 0
     while not isWin() and not isFinished():
