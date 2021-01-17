@@ -122,13 +122,13 @@ def play(size):
     create(size)
     i = 0
     while not isWin(l) and not isFinished():
-        view()
         if i%2==0:
             print(f"\n{p1}({ch}) playing...\n")
         else:
             print(f"\n{p2}({ch_}) playing...\n")
         try:
             if i%2==0:
+                view()
                 row = int(input("\nWhich row do you want to mark? "))
                 col = int(input("Which column do you want to mark? "))
                 print()
