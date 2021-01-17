@@ -24,7 +24,6 @@ def mark(i,j,sym):
     """Marks a space"""
     if l[i][j]=='-' and not isMarked(i,j):
         l[i][j] = sym
-
 def comp_mark(sym):
     """Computer marking"""
     avail = []
@@ -37,17 +36,18 @@ def comp_mark(sym):
         o_sym = 'O'
     else:
         o_sym = 'X'
-    for r, c in avail:
-        l1[r][c] = o_sym
-        if isWin(l1):  #Checking if player won after player marked
-            l[r][c] = sym
-            return l
-        else:
-            l1[r][c] = '-'
 
     for r, c in avail:
         l1[r][c] = sym
         if isWin(l1):  #Checking if computer won after computer marked
+            l[r][c] = sym
+            return 0
+        else:
+            l1[r][c] = '-'
+        
+    for r, c in avail:
+        l1[r][c] = o_sym
+        if isWin(l1):  #Checking if player won after player marked
             l[r][c] = sym
             break
         else:
@@ -55,8 +55,8 @@ def comp_mark(sym):
     else:
         n = random.randint(0, len(avail) - 1)
         l[avail[n][0]][avail[n][1]] = sym
-        return l
-
+        return 0
+   
 def view():
     """Displays the game board"""
     for i in range(2*len(l)-1):
@@ -168,11 +168,11 @@ for i in range(n):
         ld+=[(i,j) for j in range(n) if (i-j==0)]
         rd+=[(i,j) for j in range(n) if (i+j==n-1)]
 
-p1 = input('Enter player 1 name: ')
+p1 = input('Enter player name: ')
 p2 = "Computer"
 ch = input(f"Choose symbol for {p1} (O/X): ")
 if ch=='O' or ch=='o':
-    ch_ = 'X'    #player 2 symbol
+    ch_ = 'X'    #computer symbol
     ch = 'O'     #player 1 symbol
 elif ch=='X' or ch=='x':
     ch_ = 'O'
@@ -180,7 +180,7 @@ elif ch=='X' or ch=='x':
 
 num_game = int(input("Enter number of game: "))   #No. of games
 s1 = 0   #s1 -> score of player 1
-s2 = 0   #s2 -> score of player 2
+s2 = 0   #s2 -> score of computer
 
 for i in range(num_game):
     print(f"\nMatch {i+1} of {num_game}")
