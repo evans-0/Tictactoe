@@ -10,14 +10,14 @@ typedef struct pos
     int y;
 } pos;
 
-void view(char l[3][3]);
-int isMarked(char l[3][3], int row, int column);
-void mark(char l[3][3], int row, int column, char symbol);
-void comp_mark(char l[3][3], char symbol);
-int isFinished(char l[3][3]);
-int isWin(char l[3][3]);
-int play1(char name1[20], char *name2, char sym1);
-int play2(char name1[20], char name2[20], char sym1);
+void view(char l[3][3]);                                          //View the grid
+int isMarked(char l[3][3], int row, int column);                  //Check if the position is already marked
+void mark(char l[3][3], int row, int column, char symbol);        //Mark at a position(Player)
+void comp_mark(char l[3][3], char symbol);                        //Mark at a position(Computer)
+int isFinished(char l[3][3]);                                     //Check if game finished
+int isWin(char l[3][3]);                                          //Check if game won
+int play1(char name1[20], char *name2, char sym1);                //Single player game
+int play2(char name1[20], char name2[20], char sym1);             //Double player game
 
 int main()
 {
