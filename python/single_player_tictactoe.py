@@ -5,10 +5,13 @@ import random
 #wc -> whole column
 #ld -> left diagonal
 #rd -> right diagonal
+#l -> the game grid
+
 l = []
 wr, wc, ld, rd = [], [], [], []
 
 def create(size):
+    """"Create a array to store elements of a game of grid size equal to size"""
     global l
     l = [['-']*size for i in range(size)]
     return l
@@ -24,6 +27,7 @@ def mark(i,j,sym):
     """Marks a space"""
     if l[i][j]=='-' and not isMarked(i,j):
         l[i][j] = sym
+        
 def comp_mark(sym):
     """Computer marking"""
     avail = []
@@ -119,6 +123,7 @@ def isWin(arr):
     return False
             
 def play(size):
+    """Play a game of specified size"""
     create(size)
     i = 0
     while not isWin(l) and not isFinished():
@@ -168,9 +173,9 @@ for i in range(n):
         ld+=[(i,j) for j in range(n) if (i-j==0)]
         rd+=[(i,j) for j in range(n) if (i+j==n-1)]
 
-p1 = input('Enter player name: ')
+p1 = input('Enter player name: ')                  #Player name
 p2 = "Computer"
-ch = input(f"Choose symbol for {p1} (O/X): ")
+ch = input(f"Choose symbol for {p1} (O/X): ")      #Player symbol
 if ch=='O' or ch=='o':
     ch_ = 'X'    #computer symbol
     ch = 'O'     #player 1 symbol
