@@ -22,7 +22,6 @@ typedef struct data  //Data datatype for storing the possible places of victory
 
 data whole_row()  //Coordinates of whole row victory
 {
-    // size of wr -> n^2
     pos *wr = malloc(SIZE * SIZE * 2* sizeof(int));
     int n_wr = 0;
     for (int i = 0; i<SIZE; i++)
@@ -43,7 +42,7 @@ data whole_row()  //Coordinates of whole row victory
 
 data whole_column()  //Coordinates for whole column victory
 {
-    // size of wc -> n^2
+    //wc number -> n^2
     pos *wc = malloc(SIZE * SIZE * 2 * sizeof(int));
     int n_wc = 0;
     for (int i = 0; i<SIZE; i++)
@@ -70,7 +69,7 @@ Left diagonal
 */
 data left_diagonal()  //Coordinates for left diagonal victory
 {
-    // size of ld -> n
+    //ld number -> n
     pos *ld = malloc(SIZE * 2 * sizeof(int));
     int n_ld = 0;
     for (int i = 0; i<SIZE; i++)
@@ -102,7 +101,7 @@ Right diagonal
 */
 data right_diagonal()  //Coordinates for right diagonal victory
 {
-    // size of rd -> n
+    //rd number -> n
     pos *rd = malloc(SIZE * 2 * sizeof(int));
     int n_rd = 0;
     for (int i = 0; i<SIZE; i++)
@@ -204,7 +203,6 @@ int main()
                 }
             }
             printf("\nScores:\n%s -> %d\n%s -> %d\n", n1, w1, n2, w2);
-            printf("Thank you for playing!\n");
             free(n1);
             free(s1);
         }
@@ -268,12 +266,12 @@ int main()
                 }
             }
             printf("\nScores:\n%s -> %d\n%s -> %d\n", n1, w1, n2, w2);
-            printf("Thank you for playing!\n");
             free(n1);
             free(s1);
         }
         else if (ch==3)
         {
+            printf("\nThank you for playing!\n");
             break;
         }
         else
