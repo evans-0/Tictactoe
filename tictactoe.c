@@ -22,6 +22,7 @@ typedef struct data  //Data datatype for storing the possible places of victory
 
 data whole_row()  //Coordinates of whole row victory
 {
+    // size of wr -> n^2
     pos *wr = malloc(SIZE * SIZE * 2* sizeof(int));
     int n_wr = 0;
     for (int i = 0; i<SIZE; i++)
@@ -42,7 +43,7 @@ data whole_row()  //Coordinates of whole row victory
 
 data whole_column()  //Coordinates for whole column victory
 {
-    //wc number -> n^2
+    // size of wc -> n^2
     pos *wc = malloc(SIZE * SIZE * 2 * sizeof(int));
     int n_wc = 0;
     for (int i = 0; i<SIZE; i++)
@@ -69,7 +70,7 @@ Left diagonal
 */
 data left_diagonal()  //Coordinates for left diagonal victory
 {
-    //ld number -> n
+    // size of ld -> n
     pos *ld = malloc(SIZE * 2 * sizeof(int));
     int n_ld = 0;
     for (int i = 0; i<SIZE; i++)
@@ -101,7 +102,7 @@ Right diagonal
 */
 data right_diagonal()  //Coordinates for right diagonal victory
 {
-    //rd number -> n
+    // size of rd -> n
     pos *rd = malloc(SIZE * 2 * sizeof(int));
     int n_rd = 0;
     for (int i = 0; i<SIZE; i++)
