@@ -123,12 +123,10 @@ data right_diagonal(int n)  //Coordinates for right diagonal victory
     return result;
 }
 
-char *l;
-
 pos *wr, *wc, *ld, *rd;
 int n_wr, n_wc, n_ld, n_rd;
 
-void create(char *l, int n);
+void create(char *l);
 void view(char *l);
 int isMarked(char *l, int row, int column);
 void mark(char *l, int row, int column, char symbol);
@@ -144,7 +142,7 @@ int main()
     while (1)
     {
         int ch;
-        printf("Options:\n\t1. Single Player\n\t2. Double Player\n\t3. Exit");
+        printf("\nOptions:\n\t1. Single Player\n\t2. Double Player\n\t3. Exit");
         printf("\nEnter choice: ");
         scanf("%d", &ch);
 
@@ -285,9 +283,9 @@ int main()
 }
 
 //Creates array
-void create(char *l, int n)
+void create(char *l)
 {
-    for (int i = 0; i<(n * n); i++)
+    for (int i = 0; i<(SIZE * SIZE); i++)
     {
         l[i] = '-';
     }
@@ -351,8 +349,8 @@ void comp_mark(char *l, char symbol)
         }
     }
 
-    //Copying array l to array l1  //Buggy section
-    char *l1 = malloc(SIZE * sizeof(char));
+    //Copying array l to array l1
+    char l1[SIZE * SIZE];
     for (int i = 0; i<SIZE; i++)
     {
         for (int j = 0; j<SIZE; j++)
@@ -378,7 +376,6 @@ void comp_mark(char *l, char symbol)
         if (isWin(l1))
         {
             l[SIZE*avail[i].x + avail[i].y] = symbol;
-            free(l1);
             return;
         }
         else
@@ -393,7 +390,6 @@ void comp_mark(char *l, char symbol)
         if (isWin(l1)) 
         {
             l[SIZE*avail[i].x + avail[i].y] = symbol;
-            free(l1);
             return;
         }
         else
@@ -407,8 +403,6 @@ void comp_mark(char *l, char symbol)
     int row = avail[n].x;
     int col = avail[n].y;
     l[SIZE*row + col] = symbol;
-
-    free(l1);
 }
 
 //Checks if game is finished
@@ -503,8 +497,8 @@ int isWin(char *l)
 //Play a single player game
 int play1(char name1[20], char name2[20], char sym1)
 {
-    char *l = malloc(SIZE * sizeof(char));
-    create(l, SIZE);
+    char l[SIZE * SIZE];
+    create(l);
     /* name1 -> Name of player 1, sym1 -> Symbol for player 1
        name2 -> computer, sym2 -> Symbol for computer  */
     char sym2;
@@ -551,7 +545,6 @@ int play1(char name1[20], char name2[20], char sym1)
             {
                 view(l);
                 printf("\n%s won!\n", name1);
-                free(l);
                 return 1;
             }
         }
@@ -564,7 +557,6 @@ int play1(char name1[20], char name2[20], char sym1)
             {   
                 view(l);
                 printf("\n%s won!\n", name2);
-                free(l);
                 return 2;
             }
         }
@@ -576,18 +568,16 @@ int play1(char name1[20], char name2[20], char sym1)
     if ((isWin(l)==0) && (isFinished(l)))
     {
         printf("\nGame tied!\n");
-        free(l);
         return 0;
     }
-    free(l);
     return 0;
 }
 
 //Play a double player game
 int play2(char name1[20], char name2[20], char sym1)
 {
-    char *l = malloc(SIZE * sizeof(char));
-    create(l, SIZE);
+    char l[SIZE * SIZE];
+    create(l);
     /* name1 -> Name of player 1, sym1 -> Symbol for player 1
        name2 -> Name of player 2, sym2 -> Symbol for player 2  */
     char sym2;
@@ -634,7 +624,6 @@ int play2(char name1[20], char name2[20], char sym1)
             if (isWin(l))
             {
                 printf("\n%s won!\n", name1);
-                free(l);
                 return 1;
             }
         }
@@ -665,7 +654,6 @@ int play2(char name1[20], char name2[20], char sym1)
             if (isWin(l))
             {
                 printf("\n%s won!\n", name2);
-                free(l);
                 return 2;
             }
         }
@@ -677,9 +665,7 @@ int play2(char name1[20], char name2[20], char sym1)
     if ((isWin(l)==0) && (isFinished(l)))
     {
         printf("\nGame tied!\n");
-        free(l);
         return 0;
     }
-    free(l);
     return 0;
 }
