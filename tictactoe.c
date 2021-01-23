@@ -20,13 +20,13 @@ typedef struct data  //Data datatype for storing the possible places of victory
     int size;
 } data;
 
-data whole_row(int n)  //Coordinates of whole row victory
+data whole_row()  //Coordinates of whole row victory
 {
-    pos *wr = malloc(n * n * 2* sizeof(int));
+    pos *wr = malloc(SIZE * SIZE * 2* sizeof(int));
     int n_wr = 0;
-    for (int i = 0; i<n; i++)
+    for (int i = 0; i<SIZE; i++)
     {
-        for (int j = 0; j<n; j++)
+        for (int j = 0; j<SIZE; j++)
         {
             wr[n_wr].x = i;
             wr[n_wr].y = j;
@@ -40,14 +40,14 @@ data whole_row(int n)  //Coordinates of whole row victory
     return result;
 }
 
-data whole_column(int n)  //Coordinates for whole column victory
+data whole_column()  //Coordinates for whole column victory
 {
     //wc number -> n^2
-    pos *wc = malloc(n * n * 2 * sizeof(int));
+    pos *wc = malloc(SIZE * SIZE * 2 * sizeof(int));
     int n_wc = 0;
-    for (int i = 0; i<n; i++)
+    for (int i = 0; i<SIZE; i++)
     {
-        for (int j = 0; j<n; j++)
+        for (int j = 0; j<SIZE; j++)
         {
             wc[n_wc].x = j;
             wc[n_wc].y = i;
@@ -67,14 +67,14 @@ Left diagonal
 - | * | -
 - | - | *
 */
-data left_diagonal(int n)  //Coordinates for left diagonal victory
+data left_diagonal()  //Coordinates for left diagonal victory
 {
     //ld number -> n
-    pos *ld = malloc(n * 2 * sizeof(int));
+    pos *ld = malloc(SIZE * 2 * sizeof(int));
     int n_ld = 0;
-    for (int i = 0; i<n; i++)
+    for (int i = 0; i<SIZE; i++)
     {
-        for (int j = 0; j<n; j++)
+        for (int j = 0; j<SIZE; j++)
         {
             if (i - j==0)
             {
@@ -99,16 +99,16 @@ Right diagonal
 * | - | -
 
 */
-data right_diagonal(int n)  //Coordinates for right diagonal victory
+data right_diagonal()  //Coordinates for right diagonal victory
 {
     //rd number -> n
-    pos *rd = malloc(n * 2 * sizeof(int));
+    pos *rd = malloc(SIZE * 2 * sizeof(int));
     int n_rd = 0;
-    for (int i = 0; i<n; i++)
+    for (int i = 0; i<SIZE; i++)
     {
-        for (int j = 0; j<n; j++)
+        for (int j = 0; j<SIZE; j++)
         {
-            if (i + j==n - 1)
+            if (i + j==SIZE - 1)
             {
                 rd[n_rd].x = i;
                 rd[n_rd].y = j;
@@ -151,19 +151,19 @@ int main()
             printf("Enter size of grid: ");
             scanf("%d", &SIZE);
 
-            data res = whole_row(SIZE);
+            data res = whole_row();
             wr = res.arr;
             n_wr = res.size;
 
-            res = whole_column(SIZE);
+            res = whole_column();
             wc = res.arr;
             n_wc = res.size;
 
-            res = left_diagonal(SIZE);
+            res = left_diagonal();
             ld = res.arr;
             n_ld = res.size;
 
-            res = right_diagonal(SIZE);
+            res = right_diagonal();
             rd = res.arr;
             n_rd = res.size;
 
@@ -213,19 +213,19 @@ int main()
             printf("Enter size of grid: ");
             scanf("%d", &SIZE);
 
-            data res = whole_row(SIZE);
+            data res = whole_row();
             wr = res.arr;
             n_wr = res.size;
 
-            res = whole_column(SIZE);
+            res = whole_column();
             wc = res.arr;
             n_wc = res.size;
 
-            res = left_diagonal(SIZE);
+            res = left_diagonal();
             ld = res.arr;
             n_ld = res.size;
 
-            res = right_diagonal(SIZE);
+            res = right_diagonal();
             rd = res.arr;
             n_rd = res.size;
 
