@@ -271,7 +271,7 @@ int main()
         }
         else if (ch==3)
         {
-            printf("\nThank you for playing!\n");
+            printf("\nThank you for playing!\n\n");
             break;
         }
         else
@@ -549,7 +549,7 @@ int play1(char name1[20], char name2[20], char sym1)
         }
         else
         {
-            printf("\n%s(%c) playing...\n", name2, sym2);
+            printf("\n%s(%c) playing...\n\n", name2, sym2);
             comp_mark(l, sym2);
             i++;
             if (isWin(l))
