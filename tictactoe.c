@@ -267,6 +267,7 @@ int main()
             }
             printf("\nScores:\n%s -> %d\n%s -> %d\n", n1, w1, n2, w2);
             free(n1);
+            free(n2);
             free(s1);
         }
         else if (ch==3)
