@@ -1,27 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 
+int NAME_SIZE = 100;  // Size of name
 int SIZE;  //Size of the grid
 
-/*wr -> Whole row, wc -> Whole column, ld -> Left diagonal, rd -> Right diagonal
-n_wr -> size of wr, n_wc -> size of wc, n_ld -> size of ld, n_rd -> size of rd
-*/
+/* wr -> Whole row, wc -> Whole column, ld -> Left diagonal, rd -> Right diagonal
+n_wr -> size of wr, n_wc -> size of wc, n_ld -> size of ld, n_rd -> size of rd */
 
-typedef struct pos     //Position datatype for storing the coordinates
+typedef struct pos     // Position datatype for storing the coordinates
 {
     int x;
     int y;
 } pos;
 
-typedef struct data  //Data datatype for storing the possible places of victory
+typedef struct data  // Data datatype for storing the possible places of victory
 {
     pos *arr;
     int size;
 } data;
 
-data whole_row()  //Coordinates of whole row victory
+data whole_row()  // Coordinates of whole row victory
 {
+    // wr number -> n^2
     pos *wr = malloc(SIZE * SIZE * 2* sizeof(int));
     int n_wr = 0;
     for (int i = 0; i<SIZE; i++)
@@ -40,9 +42,9 @@ data whole_row()  //Coordinates of whole row victory
     return result;
 }
 
-data whole_column()  //Coordinates for whole column victory
+data whole_column()  // Coordinates for whole column victory
 {
-    //wc number -> n^2
+    // wc number -> n^2
     pos *wc = malloc(SIZE * SIZE * 2 * sizeof(int));
     int n_wc = 0;
     for (int i = 0; i<SIZE; i++)
@@ -171,14 +173,22 @@ int main()
             n1 -> player 1 name, s1 -> player 1 symbol
             n2 -> player 2 name, s2 -> player 2 symbol
             */
-            char *n1 = malloc(sizeof(char));
-            char *n2 = "Computer";
-            char *s1 = malloc(sizeof(char));
-            char s2;
+            char *n1 = malloc(NAME_SIZE * sizeof(char));
+            char *buffer = malloc(NAME_SIZE * sizeof(char));
+            char n2[9] = "Computer";
+            char s1;
             printf("Enter player name: ");
-            scanf("%s", n1);
+            scanf("%s", buffer);
+            fgetc(stdin);    // to clear the \n scanf left
+            strncpy(n1, buffer, NAME_SIZE);
+            free(buffer);    // freeing the buffer
             printf("Enter symbol for %s(O/X): ", n1);
-            scanf("%s", s1);
+            scanf("%c", &s1);
+            if ((s1 != 'X') && (s1 != 'O'))
+            {
+                printf("Invalid symbol!!\n");
+                continue;
+            }
 
             //n -> No. of games, w1 -> No. of games won by player 1, w2 -> No. of games won by player 2
             int n, w1 = 0, w2 = 0;
@@ -192,7 +202,7 @@ int main()
             for(int i = 1; i<=n; i++)
             {
                 printf("\nMatch %d of %d\n", i, n);
-                int res = play1(n1, n2, s1[0]);
+                int res = play1(n1, n2, s1);
                 if (res==1)
                 {
                     w1++;
@@ -204,7 +214,6 @@ int main()
             }
             printf("\nScores:\n%s -> %d\n%s -> %d\n", n1, w1, n2, w2);
             free(n1);
-            free(s1);
             free(wr);
             free(wc);
             free(ld);
@@ -236,16 +245,27 @@ int main()
             n1 -> player 1 name, s1 -> player 1 symbol
             n2 -> player 2 name, s2 -> player 2 symbol
             */
-            char *n1 = malloc(sizeof(char));
-            char *n2 = malloc(sizeof(char));
-            char *s1 = malloc(sizeof(char));
-            char s2;
+            char *n1 = malloc(NAME_SIZE * sizeof(char));
+            char *n2 = malloc(NAME_SIZE * sizeof(char));
+            char *buffer = malloc(NAME_SIZE * sizeof(char));
+            char s1;
             printf("Enter player 1 name: ");
-            scanf("%s", n1);
+            scanf("%s", buffer);
+            fgetc(stdin);    // to clear the \n scanf left
+            strncpy(n1, buffer, NAME_SIZE);
+            memset(buffer, 0, strlen(buffer));
             printf("Enter player 2 name: ");
-            scanf("%s", n2);
+            scanf("%s", buffer);
+            fgetc(stdin);    // to clear the \n scanf left
+            strncpy(n2, buffer, NAME_SIZE);
+            free(buffer);    // freeing the buffer
             printf("Enter symbol for %s(O/X): ", n1);
-            scanf("%s", s1);
+            scanf("%c", &s1);
+            if ((s1 != 'X') && (s1 != 'O'))
+            {
+                printf("Invalid symbol!!\n");
+                continue;
+            }
 
             //n -> No. of games, w1 -> No. of games won by player 1, w2 -> No. of games won by player 2
             int n, w1 = 0, w2 = 0;
@@ -259,7 +279,7 @@ int main()
             for(int i = 1; i<=n; i++)
             {
                 printf("\nMatch %d of %d\n", i, n);
-                int res = play2(n1, n2, s1[0]);
+                int res = play2(n1, n2, s1);
                 if (res==1)
                 {
                     w1++;
@@ -272,7 +292,6 @@ int main()
             printf("\nScores:\n%s -> %d\n%s -> %d\n", n1, w1, n2, w2);
             free(n1);
             free(n2);
-            free(s1);
             free(wr);
             free(wc);
             free(ld);
@@ -280,7 +299,7 @@ int main()
         }
         else if (ch==3)
         {
-            printf("\nThank you for playing!\n\n");
+            printf("\nThank you for playing!\n");
             break;
         }
         else
@@ -570,11 +589,13 @@ int play1(char name1[20], char name2[20], char sym1)
         }
         if (isFinished(l))
         {
+            view(l);
             break;
         }
     }
     if ((isWin(l)==0) && (isFinished(l)))
     {
+        view(l);
         printf("\nGame tied!\n");
         return 0;
     }
