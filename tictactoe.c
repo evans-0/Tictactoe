@@ -135,8 +135,8 @@ void mark(char *l, int row, int column, char symbol);
 void comp_mark(char *l, char symbol);
 int isFinished(char *l);
 int isWin(char *l);
-int play1(char name1[20], char name2[20], char sym1);
-int play2(char name1[20], char name2[20], char sym1);
+int play1(char *name1, char *name2, char sym1);
+int play2(char *name1, char *name2, char sym1);
 int count(char *arr, char arg);
 
 int main()
@@ -522,7 +522,7 @@ int isWin(char *l)
 }
 
 //Play a single player game
-int play1(char name1[20], char name2[20], char sym1)
+int play1(char *name1, char *name2, char sym1)
 {
     char l[SIZE * SIZE];
     create(l);
@@ -603,7 +603,7 @@ int play1(char name1[20], char name2[20], char sym1)
 }
 
 //Play a double player game
-int play2(char name1[20], char name2[20], char sym1)
+int play2(char *name1, char *name2, char sym1)
 {
     char l[SIZE * SIZE];
     create(l);
