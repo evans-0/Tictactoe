@@ -8,6 +8,9 @@
 #include "win.h"
 
 extern int SIZE;
+extern void clrscr();
+extern void nline();
+extern int c_row, c_col;
 
 int play(char *name1, char *name2, char sym1, void(*mark_func)(char*, char));
 
