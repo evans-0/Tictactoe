@@ -1,8 +1,9 @@
 # TICTACTOE GAME
-Tictactoe game in terminal
+Tictactoe game in terminal made using C
 
 ## Screenshot:
 ![](tictactoe.png)
 
 ## Running:
-  - change into that directory and then type `make` to run the makefile
+- clone this repository.
+- `cd Tictactoe/tictactoe-c` then run `make`
