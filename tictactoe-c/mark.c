@@ -1,25 +1,28 @@
 #include "mark.h"
 
-extern int SIZE;
-extern int isWin();
-extern void getint();
-
 //Marks the position
 void mark(char *l, char symbol)
 {
     int r, c;//, status, success;
     while (1)
     {
-        getint("Which row do you want to mark? ", &r);
-        getint("Which column do you want to mark? ", &c);
-        if (((r > SIZE) || (c > SIZE)) || ((r < 1) || (c < 1)))
-            printf("\nEnter a valid row or column.\n");
-        else
-        {
-            if(isMarked(l, r, c))
-                printf("\nAlready marked\n");
-            else
-            {
+        printf("Which row do you want to mark? ");
+        scanf("%d", &r);
+        nline();
+        printf("Which column do you want to mark? ");
+        scanf("%d", &c);
+        if (((r > SIZE) || (c > SIZE)) || ((r < 1) || (c < 1))){
+            nline();
+            printf("Enter a valid row or column.");
+            nline();
+        }
+        else{
+            if(isMarked(l, r, c)){
+                nline();
+                printf("Already marked");
+                nline();
+            }
+            else{
                 l[SIZE*(r-1) + (c-1)] = symbol;
                 break;
             }
