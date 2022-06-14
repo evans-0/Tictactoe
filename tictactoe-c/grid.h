@@ -4,6 +4,8 @@
 #include <stdio.h>
 
 extern int SIZE;
+extern void clrscr();
+extern int c_row, c_col;
 
 typedef struct {
   int x, y;
