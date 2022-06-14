@@ -10,17 +10,17 @@ void create(char *l)
 //Displays the grid
 void view(char *l)
 {
-  printf("\033[2;H");
-  printf("\033[J");
-  printf("\033[40;33m");
-  for (int i = 0; i<2*SIZE; i++)
-  {
-    for (int j = 0; j<SIZE; j++)
-      if (i%2==0)
-        printf(" %c |", l[SIZE*i/2 + j]);
-      else
-        printf("___|");
-    printf("\n");
-  }
-  printf("\033[0m");
+    clrscr();
+    printf("\e[%d;%dH", c_row++, c_col);
+    printf("\033[40;33m");
+    for (int i = 0; i<2*SIZE; i++)
+    {
+        for (int j = 0; j<SIZE; j++)
+            if (i%2==0)
+                printf(" %c |", l[SIZE*i/2 + j]);
+            else
+                printf("___|");
+        printf("\e[%d;%dH", c_row++, c_col);
+    }
+    printf("\e[0m");
 }
