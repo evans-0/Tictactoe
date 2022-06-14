@@ -1,5 +1,8 @@
 # TICTACTOE GAME
 Tictactoe game in terminal
 
-tictactoe-c:
+## Screenshot:
+![](tictactoe.png)
+
+## Running:
   - change into that directory and then type `make` to run the makefile
