@@ -17,34 +17,9 @@ data wr, wc, ld, rd;
 int row,col;
 int c_row = 3, c_col = 3;
 
-void clrscr()
-{
-	printf("\e[3;H");
-    for (int i = 3; i<row; i++){
-    	for (int j = 0; j<col; j++){
-            if ((i==0) || (i==(row-1)))
-                printf("\e[1;7m \e[0m");
-            else{
-                if ((j==0) || (j==(col-1)))
-                    printf("\e[1;7m \e[0m");
-                else
-                    printf(" ");
-            }
-        }
-        printf("\n");
-    }
-    c_row = 3;
-    printf("\e[%d;%dH", c_row, c_col);
-    fflush(stdout);
-}
-
-void nline(){
-    printf("\e[%d;%dH", c_row++, c_col);
-    fflush(stdout);
-}
-
-extern void flush_stdin();
-extern void getint();
+void clrscr();
+void nline();
+void flush_stdin();
 
 int main()
 {
@@ -192,4 +167,34 @@ int main()
 		clrscr();
 		}
     }
+}
+
+void clrscr(){
+	printf("\e[3;H");
+	for (int i = 3; i<row; i++){
+    	for (int j = 0; j<col; j++){
+       		if ((i==0) || (i==(row-1)))
+                printf("\e[1;7m \e[0m");
+            else{
+                if ((j==0) || (j==(col-1)))
+                    printf("\e[1;7m \e[0m");
+                else
+                    printf(" ");
+            }
+    	}
+        printf("\n");
+    }
+    c_row = 3;
+    printf("\e[%d;%dH", c_row, c_col);
+    fflush(stdout);
+}
+
+void nline(){
+    printf("\e[%d;%dH", c_row++, c_col);
+    fflush(stdout);
+}
+
+void flush_stdin(){
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
 }
