@@ -1,7 +1,5 @@
-main: main.c getint.o grid.o mark.o check.o win.o play.o
-	gcc main.c getint.o grid.o mark.o check.o win.o play.o
-getint.o: getint.c
-	gcc -c getint.c
+main: main.c grid.o mark.o check.o win.o play.o
+	gcc main.c grid.o mark.o check.o win.o play.o
 grid.o: grid.c
 	gcc -c grid.c
 mark.o: mark.c
@@ -13,4 +11,4 @@ win.o: win.c
 play.o: play.c
 	gcc -c play.c
 clean:
-	rm grid.o mark.o check.o win.o play.o a.out getint.o
+	rm grid.o mark.o check.o win.o play.o a.out
