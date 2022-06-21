@@ -122,51 +122,51 @@ int main()
           scanf("%d", &n);
           
 		  int res;
-		  for(int i = 1; i<=n; i++)
-		  {
-			clrscr();
-            printf("\e[%d;%dH", c_row++, c_col);
-			printf("\e[38;2;255;0;0mMatch %d of %d\e[0m\n", i, n);
-			system("sleep 0.5");
-			if (ch == 1)
-			  res = play(n1, n2, s1, &comp_mark);
-			else
-			  res = play(n1, n2, s1, &mark);
-			if (res==1)
-			  w1++;
-			else if (res==2)
-			  w2++;
+		  for(int i = 1; i<=n; i++){
+			  clrscr();
+			  printf("\e[%d;%dH", c_row++, c_col);
+			  printf("\e[38;2;255;0;0mMatch %d of %d\e[0m", i, n);
+			  nline();
+			  system("sleep 0.5");
+			  if (ch == 1)
+				  res = play(n1, n2, s1, &comp_mark);
+			  else
+				  res = play(n1, n2, s1, &mark);
+			  if (res==1)
+				  w1++;
+			  else if (res==2)
+				  w2++;
 		  }
-		  clrscr();
-          printf("\e[%d;%dH", c_row++, c_col);
-		  printf("Scores:\t");
-          nline();
-          printf("\t%s -> %d", n1, w1);
-          nline();
-          printf("\t%s -> %d", n2, w2);
-          nline();
-          printf("Press enter to continue...");
-          flush_stdin();
-          char sc;
-          scanf("%c", &sc);
-		  free(n1);
-		  free(n2);
-		  free(wr.arr);
-		  free(wc.arr);
-		  free(ld.arr);
-		  free(rd.arr);
-        }
+			clrscr();
+        	printf("\e[%d;%dH", c_row++, c_col);
+		  	printf("Scores:\t");
+     	  	nline();
+        	printf("\t%s -> %d", n1, w1);
+       		nline();
+ 	        printf("\t%s -> %d", n2, w2);
+          	nline();
+          	printf("Press enter to continue...");
+          	flush_stdin();
+          	char sc;
+          	scanf("%c", &sc);
+			free(n1);
+			free(n2);
+			free(wr.arr);
+			free(wc.arr);
+			free(ld.arr);
+		  	free(rd.arr);
+		}
         else if (ch == 3)
             break;
         else{
-		clrscr();
-		printf("\e[91;1mInvalid choice...\e[0m");
-		c_row++;
-       	nline();
-	   	system("sleep 0.5");
-		clrscr();
+			clrscr();
+			printf("\e[91;1mInvalid choice...\e[0m");
+			c_row++;
+       		nline();
+	   		system("sleep 0.5");
+			clrscr();
 		}
-    }
+	}
 }
 
 void clrscr(){
