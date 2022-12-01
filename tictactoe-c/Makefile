@@ -1,14 +1,17 @@
-main: main.c grid.o mark.o check.o win.o play.o
-	gcc main.c grid.o mark.o check.o win.o play.o
-grid.o: grid.c
-	gcc -c grid.c
-mark.o: mark.c
-	gcc -c mark.c
-check.o: check.c
-	gcc -c check.c
-win.o: win.c
-	gcc -c win.c
-play.o: play.c
-	gcc -c play.c
+CC=gcc
+
+CFILES=main.c grid.c mark.c check.c win.c play.c
+OBJECTS=main.o grid.o mark.o check.o win.o play.o
+
+BINARY=game
+
+all: $(BINARY)
+
+$(BINARY): $(OBJECTS)
+	$(CC) -o $@ $^
+
+%.o: %.c
+	$(CC) -c -o $@ $^
+
 clean:
-	rm grid.o mark.o check.o win.o play.o a.out
+	rm $(BINARY) $(OBJECTS)
